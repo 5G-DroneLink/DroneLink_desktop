@@ -11,16 +11,22 @@ $ git clone https://github.com/flutter/flutter.git -b stable
 #### Update path in your ~/.bashrc file
 ```bash
  export PATH="$PATH:`pwd`/flutter/bin"
-```
+
 $ sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
 ```
 ### Enable desktop support
+
 ```bash
+
 $ flutter config --enable-linux-desktop 
+
 ```
 ### Setup flutter 
+
 ```bash
+
 $ flutter channel master
 $ flutter pub get
 $ flutter run -d linux
+
 ```
