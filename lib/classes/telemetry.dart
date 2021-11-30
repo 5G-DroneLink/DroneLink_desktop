@@ -5,6 +5,7 @@ class Telemetry {
   final double speed;
   final double latitude;
   final double longitude;
+  final double yaw;
 
   Telemetry(
       {required this.pitch,
@@ -12,12 +13,14 @@ class Telemetry {
       required this.altitude,
       required this.speed,
       required this.latitude,
-      required this.longitude});
+      required this.longitude,
+      required this.yaw});
 
   factory Telemetry.fromJson(Map<String, dynamic> json) {
     return Telemetry(
         pitch: json["pitch"] as double,
         roll: json["roll"] as double,
+        yaw: json["yaw"] as double,
         altitude: json["altitude"] as double,
         speed: json["speed"] as double,
         latitude: json["latitude"] as double,
