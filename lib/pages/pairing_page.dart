@@ -96,8 +96,8 @@ class _PairingPageState extends State<PairingPage> {
         if (isPaired) {
           String uri = data.toString();
           print("streamming from $uri");
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => StreamingPage(uri: uri,nsp: tmNsp)));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => StreamingPage(uri: uri, nsp: tmNsp)));
         }
         client.emit('fromServer', "ok 2");
       });

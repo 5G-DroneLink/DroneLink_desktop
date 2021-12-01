@@ -42,19 +42,15 @@ class _StreamingPageState extends State<StreamingPage> {
     return Scaffold(
       body: Stack(children: [
         _reatlTimeVLC(context),
-        Row(children: [
-          _telemetry(context),
-          Container(
-            child: IconButton(
-              icon: const Icon(Icons.wifi),
-              onPressed: (){
-                setState(() {
-                  isTelemetryVisible = !isTelemetryVisible;
-                });
-              },
-            ),
-          )
-        ]),
+        _telemetry(context),
+        IconButton(
+          icon: const Icon(Icons.wifi),
+          onPressed: () {
+            setState(() {
+              isTelemetryVisible = !isTelemetryVisible;
+            });
+          },
+        )
       ]),
     );
   }
@@ -86,30 +82,38 @@ class _StreamingPageState extends State<StreamingPage> {
 
   _telemetry(BuildContext context) {
     if (telemetry.altitude < 0) {
-      return SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.8,
-          child: Center(
-              child: Container(child: Text("Telemetría no disponible"))));
+      return Visibility(
+          visible: isTelemetryVisible,
+          child: Container(
+              color: const Color.fromARGB(255, 43, 41, 40),
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: Center(
+                      child: Container(
+                          child: Text("Telemetría no disponible"))))));
     } else {
       return Visibility(
         visible: isTelemetryVisible,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.8,
-          child: Center(
-              child: Container(
-            child: Column(
-              children: [
-                Text("Pitch: " + telemetry.pitch.toString()),
-                Text("Roll " + telemetry.roll.toString()),
-                Text("Altitude" + telemetry.altitude.toString()),
-                Text("Speed" + telemetry.speed.toString()),
-                Text("Latitude" + telemetry.latitude.toString()),
-                Text("Longitude: " + telemetry.longitude.toString())
-              ],
-            ),
-          )),
+        child: Container(
+          color: const Color.fromARGB(255, 43, 41, 40),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Center(
+                child: Container(
+              child: Column(
+                children: [
+                  Text("Pitch: " + telemetry.pitch.toString()),
+                  Text("Roll " + telemetry.roll.toString()),
+                  Text("Altitude" + telemetry.altitude.toString()),
+                  Text("Speed" + telemetry.speed.toString()),
+                  Text("Latitude" + telemetry.latitude.toString()),
+                  Text("Longitude: " + telemetry.longitude.toString())
+                ],
+              ),
+            )),
+          ),
         ),
       );
     }
